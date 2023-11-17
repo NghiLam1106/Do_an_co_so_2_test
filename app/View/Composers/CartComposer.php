@@ -21,7 +21,7 @@ class CartComposer
         if (is_null($carts)) return [];
 
         $productId = array_keys($carts);
-        $products = Product::select('id', 'name', 'price', 'hinhanh')
+        $products = Product::select('id', 'nameproduct', 'price', 'hinhanhproduct')
             ->whereIn('id', $productId)
             ->get();
 

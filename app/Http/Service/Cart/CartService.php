@@ -47,7 +47,7 @@ class CartService {
         if (is_null($carts)) return [];
 
         $productId = array_keys($carts);
-        return Product::select('id', 'name', 'price', 'hinhanh')
+        return Product::select('id', 'nameproduct', 'price', 'hinhanhproduct')
             ->whereIn('id', $productId)
             ->get();
     }
@@ -99,7 +99,7 @@ class CartService {
 
     public function infoProductCart($carts, $customer_id) {
         $productId = array_keys($carts);
-        $products = Product::select('id', 'nameproduct', 'price', 'hinhanh')
+        $products = Product::select('id', 'nameproduct', 'price', 'hinhanhproduct')
             ->whereIn('id', $productId)
             ->get();
             

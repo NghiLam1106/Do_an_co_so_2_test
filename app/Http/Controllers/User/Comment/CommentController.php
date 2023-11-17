@@ -19,39 +19,44 @@ class CommentController extends Controller
 
 
     public function sendcomment(Request $request) {
-        $user = Auth::user()->name;
-        $hinhanh = Auth::user()->hinhanh;
-        $commentnha = $request->input('comment');
-        $comment_name = $user;
-        // $rating = $request->has('rating_star') ? (int)$request->input('rating_star') : 0;
-        $comment_star = (int)$request->input('rating');
-        $user = $request->input('user_id');
+        
+        $user_id = $request->input('user_id');
 
-        $rating = DB::table('ratings')->insert([
-            'rating' => $comment_star,
-            'product_id' => $request->input('comment_product_id'),
-            'user_id' => $user
-        ]);
+        if (empty($user_id)) {
+            echo '<scrip>alert("Mỗi tài khoản chỉ được bình luận 1 lần:")</scrip>';
+        } else {
+            $user = Auth::user()->name;
+            $hinhanh = Auth::user()->hinhanh;
+            $commentnha = $request->input('comment');
+            $comment_name = $user;
+            $rating = (int)$request->input('rating');
 
-        // $rating = Rating::create($request->all());
-
-        $comment = DB::table('comments')->insert([
-            'comment_user_name' => $comment_name,
-            'comment_product_id' => $request->input('comment_product_id'),
-            'commet' => $commentnha,
-            'hinhanh' => $hinhanh,
-        ]);
-
-        if ($comment) {
-            return response()->json([
-                'error' => false,
-                'comment' => $commentnha,
-                'comment_name' => $comment_name,
-                'hinhanh' => $hinhanh,
-                'rating' => $comment_star
+            $rating = DB::table('ratings')->insert([
+                'rating' => $rating ,
+                'product_id' => $request->input('comment_product_id'),
+                'user_id' => $user_id
             ]);
-        }
+    
+            // $rating = Rating::create($request->all());
+    
+            $comment = DB::table('comments')->insert([
+                'comment_user_name' => $comment_name,
+                'comment_product_id' => $request->input('comment_product_id'),
+                'commet' => $commentnha,
+                'hinhanh' => $hinhanh,
+            ]);
 
-        return response()->json(['error' => true]);
+            if ($comment) {
+                return response()->json([
+                    'error' => false,
+                    'comment' => $commentnha,
+                    'comment_name' => $comment_name,
+                    'hinhanh' => $hinhanh,
+                    'rating' => DB::table('ratings')->select('rating')->where('product_id', $request->input('comment_product_id'))->avg('rating')
+                ]);
+            }
+    
+            return response()->json(['error' => true]);
+        }
     }
 }

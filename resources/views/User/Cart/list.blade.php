@@ -47,10 +47,10 @@
                                             <tr class="table_row">
                                                 <td class="column-1">
                                                     <div class="how-itemcart1">
-                                                        <img src="{{ $item->hinhanh }}" alt="IMG">
+                                                        <img src="{{ $item->hinhanhproduct }}" alt="IMG">
                                                     </div>
                                                 </td>
-                                                <td class="column-2">{{ $item->name }}</td>
+                                                <td class="column-2">{{ $item->nameproduct }}</td>
                                                 <td class="column-3">{{ number_format($price) }}</td>
                                                 <td class="column-4">
                                                     <div class="wrap-num-product flex-w m-l-auto m-r-0">

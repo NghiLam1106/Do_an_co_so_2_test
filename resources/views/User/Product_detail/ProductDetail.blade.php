@@ -277,11 +277,13 @@
                                                         </span>
 
                                                         <span class="fs-18 cl11">
-                                                            <i class="zmdi zmdi-star"></i>
-                                                            <i class="zmdi zmdi-star"></i>
-                                                            <i class="zmdi zmdi-star"></i>
-                                                            <i class="zmdi zmdi-star"></i>
-                                                            <i class="zmdi zmdi-star-half"></i>
+                                                            @for ($i = 1; $i <= 5; $i++)
+                                                                @if ($i <= $rating)
+                                                                    <i class="zmdi zmdi-star"></i>
+                                                                @else
+                                                                    <i class="zmdi zmdi-star-outline"></i>
+                                                                @endif
+                                                            @endfor
                                                         </span>
                                                     </div>
 
@@ -318,16 +320,15 @@
                                                         Your Rating
                                                     </span>
 
-                                                    <span class="wrap-rating fs-18 cl11 pointer" name="rating" id="rating">
+                                                    <span class="wrap-rating fs-18 cl11 pointer" id="star">
                                                         <i class="item-rating pointer zmdi zmdi-star-outline"></i>
                                                         <i class="item-rating pointer zmdi zmdi-star-outline"></i>
                                                         <i class="item-rating pointer zmdi zmdi-star-outline"></i>
                                                         <i class="item-rating pointer zmdi zmdi-star-outline"></i>
                                                         <i class="item-rating pointer zmdi zmdi-star-outline"></i>
-                                                        {{-- <input class="dis-none" type="number" name="rating" id="rating"> --}}
-                                                        <input type="number" data-min="0" data-max="5" data-step="1" name="rating" id="rating">
+                                                        <input type="number" class="dis-none" id="rating">
                                                     </span>
-                                                </div>
+                                                </div> 
 
                                                 <button type="submit" id="send_comment"
                                                     class="flex-c-m stext-101 cl0 size-112 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">

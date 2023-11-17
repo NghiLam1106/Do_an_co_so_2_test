@@ -18,8 +18,9 @@ class ProductDetailController extends Controller
         $infor = $this->ProductDetailService->show($id);
         $product = $this->ProductDetailService->showAll();
         $comment = $this->ProductDetailService->Comment($id);
+        $rating = $this->ProductDetailService->rating($id);
         $title = $infor->name;
-        return view('User.Product_detail.ProductDetail', compact('title','infor', 'product', 'comment'));
+        return view('User.Product_detail.ProductDetail', compact('title','infor', 'product', 'comment', 'rating'));
     }
 
     

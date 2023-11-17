@@ -2,6 +2,7 @@
 namespace App\Http\Service\Product;
 
 use App\Models\Menu;
+use App\Models\Rating;
 use App\Models\Comment;
 use App\Models\Product;
 use Illuminate\Support\Facades\DB;
@@ -32,6 +33,10 @@ class ProductDetailService {
         $product_id = $id;
         // dd($product_id);
         return Comment::where('comment_product_id', $product_id)->get();
+    }
+
+    public function rating($id) {
+        return DB::table('ratings')->select('rating')->where('product_id', $id)->avg('rating');
     }
 }
 
