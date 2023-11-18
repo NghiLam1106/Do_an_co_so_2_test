@@ -35,9 +35,7 @@ class ProductDetailService {
         return Comment::where('comment_product_id', $product_id)->get();
     }
 
-    public function rating($id) {
-        return DB::table('ratings')->select('rating')->where('product_id', $id)->avg('rating');
-    }
+    
 }
 
 ?>

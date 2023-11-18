@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User\Comment;
 
 use App\Models\Rating;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -19,44 +20,34 @@ class CommentController extends Controller
 
 
     public function sendcomment(Request $request) {
-        
-        $user_id = $request->input('user_id');
+        $productId = $request->input('comment_product_id');
+        // $user_name = Comment::where('comment_product_id', $productId)->get();
+        $user_name = Comment::where('comment_product_id', $productId)->pluck('comment_user_name')->toArray();
+        $user = Auth::user()->name;
+        $hinhanh = Auth::user()->hinhanh;
+        $commentnha = $request->input('comment');
+        $rating = (int)$request->input('rating');
 
-        if (empty($user_id)) {
-            echo '<scrip>alert("Mỗi tài khoản chỉ được bình luận 1 lần:")</scrip>';
+        if (is_array($user_name) && in_array($user, $user_name)) {
+            return response()->json(['error' => true]);
         } else {
-            $user = Auth::user()->name;
-            $hinhanh = Auth::user()->hinhanh;
-            $commentnha = $request->input('comment');
-            $comment_name = $user;
-            $rating = (int)$request->input('rating');
-
-            $rating = DB::table('ratings')->insert([
-                'rating' => $rating ,
-                'product_id' => $request->input('comment_product_id'),
-                'user_id' => $user_id
-            ]);
-    
-            // $rating = Rating::create($request->all());
-    
             $comment = DB::table('comments')->insert([
-                'comment_user_name' => $comment_name,
+                'comment_user_name' => $user,
                 'comment_product_id' => $request->input('comment_product_id'),
                 'commet' => $commentnha,
                 'hinhanh' => $hinhanh,
+                'rating' => $rating
             ]);
 
             if ($comment) {
                 return response()->json([
                     'error' => false,
                     'comment' => $commentnha,
-                    'comment_name' => $comment_name,
+                    'comment_name' => $user,
                     'hinhanh' => $hinhanh,
-                    'rating' => DB::table('ratings')->select('rating')->where('product_id', $request->input('comment_product_id'))->avg('rating')
+                    'rating' => (int)$request->input('rating')
                 ]);
             }
-    
-            return response()->json(['error' => true]);
         }
     }
 }

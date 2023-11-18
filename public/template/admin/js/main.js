@@ -96,12 +96,11 @@ function loadMore()
 $('#send_comment').click(function (ev) {
     ev.preventDefault();
     let product_id = $('#comment_product_id').val();
-    let comment_name = $('#comment_user_name').val();
+    let comment_name = $('#user_name').val();
     let comment_content = $('#comment').val();
     let comment_avatar = $('#hinhanh').val();
     let rating = $('#rating').val();
     let user_id = $('#user_id').val();
-    console.log(rating)
     
 
     $.ajax({
@@ -116,7 +115,6 @@ $('#send_comment').click(function (ev) {
         success : function (res) {
             if (res.error === false) {
                 $('#comment').val('');
-                $('#comment_user_name').val('');
                 $('#comment_show').append(
                     '<div class="flex-w flex-t p-b-68">'+
                         '<div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">'+
@@ -125,7 +123,7 @@ $('#send_comment').click(function (ev) {
 
                         '<div class="size-207">'+
                             '<div class="flex-w flex-sb-m p-b-17" >'+
-                                '<span class="mtext-107 cl2 p-r-20">'+
+                                '<span class="mtext-107 cl2 p-r-20 last_child">'+
                                     res.comment_name+
                                 '</span>'+
 
@@ -146,14 +144,17 @@ $('#send_comment').click(function (ev) {
                             if (i <= rating) {
                                 stars += '<i class="zmdi zmdi-star" style="margin-right: 5px;"></i>';
                             } else {
-                                stars += '<i class="zmdi zmdi-star-outline" style="margin-right: 5px;"></i>';
+                                stars += '<i class="zmdi zmdi-star-outline" style="margin-right: 3px;"></i>';
                             }
                         }
                         return stars;
                     }
             }
             else {
-                alert('Không đăng bình luận được')
+                $('#erorr').append('Mỗi tài khoản chỉ được bình luận một lần');
+                $('#erorr').css('display', 'block')
+                $('#erorr').fadeOut(5000);
+                // alert('Mỗi tài khoản chỉ được bình luận một lần')
             }
         }
     })

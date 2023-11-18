@@ -3,6 +3,11 @@
 
 <head>
     @include('User.head')
+    <style>
+        .last_child > :last-child{
+            margin-right: 0px;
+        }
+    </style>
 </head>
 
 <body class="animsition">
@@ -32,7 +37,7 @@
                 <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
             </a>
             <span class="stext-109 cl4">
-                {{ $infor->name }}
+                {{ $infor->nameproduct }}
             </span>
         </div>
     </div>
@@ -263,6 +268,9 @@
 
                                         <input type="hidden" name="comment_product_id" class="comment_product_id"
                                             value="{{ $infor->id }}">
+                                            @if (Auth::check())
+                                                <input type="hidden" name="user_id" id="user_id" value="{{ Auth::user()->id }}">
+                                            @endif
 
                                         @foreach ($comment as $item)
                                             <div class="flex-w flex-t p-b-68">
@@ -278,7 +286,7 @@
 
                                                         <span class="fs-18 cl11">
                                                             @for ($i = 1; $i <= 5; $i++)
-                                                                @if ($i <= $rating)
+                                                                @if ($i <= $item->rating)
                                                                     <i class="zmdi zmdi-star"></i>
                                                                 @else
                                                                     <i class="zmdi zmdi-star-outline"></i>
@@ -304,6 +312,7 @@
                                                 <input type="hidden" name="comment_product_id" id="comment_product_id" value="{{ $infor->id }}">
                                                 <input type="hidden" name="hinhanh" id="hinhanh" value="{{ Auth::user()->hinhanh }}">
                                                 <input type="hidden" name="user_id" id="user_id" value="{{ Auth::user()->id }}">
+                                                <input type="hidden" name="user_name" id="user_name" value="{{ Auth::user()->name }}">
                                                 <h5 class="mtext-108 cl2 p-b-7">
                                                     Thêm bình luận mới
                                                 </h5>
@@ -313,6 +322,10 @@
                                                         <label class="stext-102 cl3" for="review">Bình luận của bạn</label>
                                                         <textarea class="size-110 bor8 stext-102 cl2 p-lr-20 p-tb-10" id="comment" name="comment"></textarea>
                                                     </div>
+                                                    
+                                                </div>
+                                                <div class="mtext-108 cl2 p-b-7 text-danger" style="margin: 10px 0; display: none;" id="erorr">
+                                                    
                                                 </div>
 
                                                 <div class="flex-w flex-m p-t-25 p-b-23">

@@ -15,4 +15,8 @@ class Comment extends Model
         'commet',
         'hinhanh'
     ];
+
+    // public function users() {
+    //     return $this->hasOne(User::class, 'id', 'menu_id')->withDefault(['name' => '']);
+    // }
 }
