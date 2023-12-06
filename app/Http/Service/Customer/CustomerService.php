@@ -17,7 +17,7 @@ class CustomerService {
     // 
     public function getProductForCart($customer) {
         return $customer->carts()->with(['product' => function ($query) {
-            $query->select('id', 'nameproduct', 'hinhanh');
+            $query->select('id', 'nameproduct', 'hinhanhproduct');
         }])->get();
     }
 

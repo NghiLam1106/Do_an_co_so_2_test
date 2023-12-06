@@ -17,11 +17,18 @@ class ChangeinforService {
     // Hàm cập nhật dữ liệu
     public function update($request, $id) {
         try {
-            if ($request->input('password') === $request->input('confirmPassword')) {
+            if (empty($request->input('password')) && empty($request->input('passwordcomfirm'))) {
                 DB::table('users')->where('id', '=', $id)->update([
                     'name' => (string)$request->input('name'),
                     'email' => (string)$request->input('email'),
-                    'hinhanh' => (string)$request->input('hinhanh'),
+                ]);
+                $request->session()->flash('success', "Cập nhật thành công");
+                return true;
+            }
+            else if ($request->input('password') === $request->input('confirmPassword')) {
+                DB::table('users')->where('id', '=', $id)->update([
+                    'name' => (string)$request->input('name'),
+                    'email' => (string)$request->input('email'),
                     'password' => ('bcrypt')($request->input('password'))
                 ]);
                 $request->session()->flash('susscess', "Cập nhật thành công");

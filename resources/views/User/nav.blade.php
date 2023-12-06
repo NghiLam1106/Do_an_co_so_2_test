@@ -13,19 +13,19 @@
             <div class="menu-desktop">
                 <ul class="main-menu">
                     <li>
-                        <a href="/home">Trang chủ</a>
+                        <a href="/home">TRANG CHỦ</a>
                     </li>
 
                     <li>
-                        <a href="{{ route('cuahang') }}">Cửa hàng</a>
+                        <a href="{{ route('cuahang') }}">CỬA HÀNG</a>
                     </li>
 
                     <li>
-                        <a href="{{ route('about') }}">About</a>
+                        <a href="{{ route('about') }}">VỀ COZA STORE</a>
                     </li>
 
                     <li>
-                        <a href="{{ route('contact') }}">Liên hệ</a>
+                        <a href="{{ route('contact') }}">LIÊN HỆ</a>
                     </li>
                 </ul>
             </div>
@@ -39,8 +39,11 @@
                 @php
                     if (is_null(Session::get('carts'))) {
                         $productQuantity = 0;
-                    } else {
+                    } else if (Auth::check()){
                         $productQuantity = count(Session::get('carts'));
+                    }
+                    else {
+                        $productQuantity = 0;
                     }
                 @endphp
 
@@ -114,7 +117,7 @@
 
     <ul class="main-menu-m">
         <li>
-            <a href="/home">Trang chủ</a>
+            <a href="/home">TRANG CHỦ</a>
         </li>
 
         <li>

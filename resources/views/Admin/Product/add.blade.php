@@ -66,7 +66,7 @@
                 <div id="img_show">
 
                 </div>
-                <input type="hidden" name="hinhanh" id="hinhanh">
+                <input type="hidden" name="hinhanhproduct" id="hinhanh">
             </div>
         </div>
         <div class="card-footer">

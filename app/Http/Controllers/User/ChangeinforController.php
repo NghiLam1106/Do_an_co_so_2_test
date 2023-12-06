@@ -25,7 +25,7 @@ class ChangeinforController extends Controller
             // dd($infor);
         }
         else {
-            session()->flash('error', 'Danh mục không tồn tại');
+            session()->flash('error', 'Người dùng không tồn tại');
             return redirect()->route('infor');
         }
         return view('User.infor.changeinfor', compact('title', 'infor'));

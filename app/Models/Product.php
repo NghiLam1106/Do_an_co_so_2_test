@@ -15,7 +15,7 @@ class Product extends Model
         'menu_id',
         'content',
         'soluong',
-        'hinhanh',
+        'hinhanhproduct',
         'price',
         'mausac',
         'size'
