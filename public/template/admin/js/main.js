@@ -81,7 +81,7 @@ function loadMore()
         data : { page },
         url : '/Service/load-product',
         success : function (result) {
-            if (result.html !== '') {
+            if (result.html != '') {
                 $('#loadProduct').append(result.html);
                 $('#page').val(page + 1);
             } else {

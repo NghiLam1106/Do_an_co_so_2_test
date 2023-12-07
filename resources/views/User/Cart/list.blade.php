@@ -70,7 +70,7 @@
                                                 <td class="column-5">{{ number_format($endPrice) }}</td>
                                                 <td class="column-6 p-r-15">
                                                     <a href="/carts/delete/{{ $item->id }}"
-                                                        style="cursor: pointer;">Xóa</a>
+                                                        style=" color: black; font-size: 25px"><i class="zmdi zmdi-close" style="cursor: pointer;"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach

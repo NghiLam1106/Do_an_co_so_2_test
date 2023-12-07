@@ -76,7 +76,7 @@ Route::middleware(['auth'])->group(function () {
     
 });
 
-// User
+// Load more
 Route::post('/Service/load-product',[HomeController::class, 'loadProduct']);
 
 Route::prefix('/cuahang')->group(function () {
@@ -95,7 +95,9 @@ Route::post('/SendComment', [CommentController::class, 'sendcomment']);
 
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 
+// Mail
 Route::get('/lienhe', [ContactController::class, 'index'])->name('contact');
+Route::post('/lienhe', [ContactController::class, 'sendContact']);
 
 Route::post('/add-cart', [CartController::class, 'index']);
 
