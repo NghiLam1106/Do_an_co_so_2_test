@@ -24,8 +24,8 @@ class ProductDetailService {
     //     ->get();
     // }
 
-    public function showAll() {
-        return DB::table('products')->get();
+    public function showAll($infor) {
+        return DB::table('products')->where('menu_id', '=', $infor->menu_id)->get();
     }
 
     // 

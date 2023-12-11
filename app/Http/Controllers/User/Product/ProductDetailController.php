@@ -16,7 +16,7 @@ class ProductDetailController extends Controller
 
     public function index($id, $slug='', Request $request) {
         $infor = $this->ProductDetailService->show($id);
-        $product = $this->ProductDetailService->showAll();
+        $product = $this->ProductDetailService->showAll($infor);
         $comment = $this->ProductDetailService->Comment($id);
         $title = $infor->nameproduct;
         return view('User.Product_detail.ProductDetail', compact('title','infor', 'product', 'comment'));

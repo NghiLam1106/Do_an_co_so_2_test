@@ -87,7 +87,7 @@
                 <div class="col-md-6 col-lg-5 p-b-30">
                     <div class="p-r-50 p-t-5 p-lr-0-lg">
                         <h4 class="mtext-105 cl2 js-name-detail p-b-14">
-                            {{ $infor->name }}
+                            {{ $infor->nameproduct }}
                         </h4>
 
                         <span class="mtext-106 cl2">
@@ -195,7 +195,7 @@
                         <div class="tab-pane fade show active" id="description" role="tabpanel">
                             <div class="how-pos2 p-lr-15-md">
                                 <p class="stext-102 cl6">
-                                    {{ $infor->content }}
+                                    {!! $infor->content !!}
                                 </p>
                             </div>
                         </div>
@@ -369,7 +369,7 @@
         <div class="container">
             <div class="p-b-45">
                 <h3 class="ltext-106 cl5 txt-center">
-                    Related Products
+                    Sản phẩm liên quan
                 </h3>
             </div>
 

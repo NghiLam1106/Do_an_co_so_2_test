@@ -11,7 +11,7 @@
                 <th>Địa chỉ</th>
                 <th>Email</th>
                 <th>Ngày đặt hàng</th>
-                <th style="width: 5%">Sửa</th>
+                <th style="width: 7%">Chi tiết</th>
                 <th style="width: 5%">Xóa</th>
             </tr>
         </thead>

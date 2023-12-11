@@ -21,7 +21,7 @@ class CommentController extends Controller
 
     public function sendcomment(Request $request) {
         $productId = $request->input('comment_product_id');
-        // $user_name = Comment::where('comment_product_id', $productId)->get();
+        $user_id = $request->input('user_id');;
         $user_name = Comment::where('comment_product_id', $productId)->pluck('comment_user_name')->toArray();
         $user = Auth::user()->name;
         $hinhanh = Auth::user()->hinhanh;
@@ -33,6 +33,7 @@ class CommentController extends Controller
         } else {
             $comment = DB::table('comments')->insert([
                 'comment_user_name' => $user,
+                'user_id' => $user_id,
                 'comment_product_id' => $request->input('comment_product_id'),
                 'commet' => $commentnha,
                 'hinhanh' => $hinhanh,

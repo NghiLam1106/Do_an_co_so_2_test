@@ -14,9 +14,19 @@ return new class extends Migration
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
             $table->string('comment_user_name');
-            $table->integer('comment_product_id');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('comment_product_id');
             $table->longText('commet');
             $table->string('hinhanh');
+            $table->integer('rating');
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
+            $table->foreign('comment_product_id')
+                ->references('id')
+                ->on('products')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }
