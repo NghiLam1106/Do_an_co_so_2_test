@@ -14,13 +14,12 @@ class ProductUserService {
     // Hàm gọi tất cả sản phẩm
     public function get($page = null) {
         return Product::select('id', 'nameproduct', 'price', 'hinhanhproduct')
-            ->orderByDesc('id')
             ->when($page != null, function ($query) use ($page) {
                 $query->offset($page * self::LIMIT);
             })
-            // ->limit(self::LIMIT)
-            ->paginate(self::LIMIT);
-            // ->get();
+            ->limit(self::LIMIT)
+            // ->paginate(self::LIMIT);
+            ->get();
     }
     
     // 

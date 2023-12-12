@@ -5,7 +5,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th style="width: 50px">ID</th>
+                <th style="width: 50px">STT</th>
                 <th>Tên</th>
                 <th>Hình ảnh</th>
                 {{-- <th style="width: 100px">&nbsp;</th> --}}
@@ -16,7 +16,7 @@
         <tbody>
             @foreach ($infor as $key => $item)
                 <tr>
-                    <td>{{ $item->id }}</td>
+                    <td>{{ $key + 1 }}</td>
                     <td>{{ $item->name }}</td>
                     <td><img src="{{ $item->hinhanh }}" width="150" height="150"></td>
                     <td>

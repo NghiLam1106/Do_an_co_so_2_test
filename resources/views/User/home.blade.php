@@ -127,14 +127,14 @@
 
             <!-- Load more -->
             <div class="flex-c-m flex-w w-full p-t-45" id="button-loadMore">
-                <input type="hidden" value="1" id="page">
+                <input type="hidden" value="1" id="page" name="page">
                 <a onclick="loadMore()" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04"
                     style="cursor: pointer;">
                     Load More
                 </a>
             </div>
             <div class="flex-c-m flex-w w-full p-t-45" style="display: none" id="NoProduct">
-                <p style="text-align: center">Không còn sản phẩm</p>
+                <h3 style="text-align: center">Không còn sản phẩm</h3>
             </div>
         </div>
     </section>
