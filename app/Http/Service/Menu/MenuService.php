@@ -69,7 +69,24 @@ class MenuService {
             ->where('menu_id', $menu->id)
             ->where('nameproduct', 'like', '%'.$request->search.'%');
         if ($request->input('price')) {
-            $query->orderBy('price', $request->input('price'));
+            $price = $request->input('price');
+            switch ($price) {
+                case '1':
+                    $query->whereBetween('price', [100000, 200000]);
+                    break;
+                case '2':
+                    $query->whereBetween('price', [200000, 300000]);
+                    break;
+                case '3':
+                    $query->whereBetween('price', [300000, 400000]);
+                    break;
+                case 'asc':
+                    $query->orderBy('price', $request->input('price'));
+                    break;
+                case 'desc':
+                    $query->orderBy('price', $request->input('price'));
+                    break;
+            }
         }
         if ($request->input('mausac')) {
             $query->where('mausac', $request->input('mausac'));

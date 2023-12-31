@@ -27,7 +27,7 @@ class ProductService {
 
     // Hàm lấy tất cả dữ liệu của sản phẩm
     public function listProduct() {
-        return DB::table('products')->join('menus', 'products.menu_id', '=', 'menus.id')->paginate(10)->withQueryString(); // Phân trang: Một trang hiển thị 10 sản phẩm
+        return DB::table('products')->join('menus', 'products.menu_id', '=', 'menus.id')->select('products.*', 'menus.name')->paginate(10)->withQueryString(); // Phân trang: Một trang hiển thị 10 sản phẩm
     }
 
     // Hàm lấy dữ liệu sản phảm theo id

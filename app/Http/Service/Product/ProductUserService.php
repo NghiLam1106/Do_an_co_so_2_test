@@ -28,7 +28,24 @@ class ProductUserService {
             ->select('id', 'nameproduct', 'price', 'mausac', 'hinhanhproduct')
             ->where('nameproduct', 'like', '%'.$request->search.'%');
             if ($request->input('price')) {
-                $query->orderBy('price', $request->input('price'));
+                $price = $request->input('price');
+                switch ($price) {
+                    case '1':
+                        $query->whereBetween('price', [100000, 199999]);
+                        break;
+                    case '2':
+                        $query->whereBetween('price', [200000, 300000]);
+                        break;
+                    case '3':
+                        $query->whereBetween('price', [300000, 400000]);
+                        break;
+                    case 'asc':
+                        $query->orderBy('price', $request->input('price'));
+                        break;
+                    case 'desc':
+                        $query->orderBy('price', $request->input('price'));
+                        break;
+                }
             }
             if ($request->input('mausac')) {
                 $query->where('mausac', $request->input('mausac'));
@@ -55,7 +72,24 @@ class ProductUserService {
             ->where('menu_id', $menu->id);
 
         if ($request->input('price')) {
-            $query->orderBy('price', $request->input('price'));
+            $price = $request->input('price');
+            switch ($price) {
+                case '1':
+                    $query->whereBetween('price', [100000, 200000]);
+                    break;
+                case '2':
+                    $query->whereBetween('price', [200000, 300000]);
+                    break;
+                case '3':
+                    $query->whereBetween('price', [300000, 400000]);
+                    break;
+                case 'asc':
+                    $query->orderBy('price', $request->input('price'));
+                    break;
+                case 'desc':
+                    $query->orderBy('price', $request->input('price'));
+                    break;
+            }
         }
         if ($request->input('mausac')) {
             $query->where('mausac', $request->input('mausac'));
@@ -66,16 +100,16 @@ class ProductUserService {
     }
 
     //
-    public function search($request) {
-        $query = Product::where('nameproduct', 'like', '%'.$request->search.'%');
-        if ($request->input('price')) {
-            $query->orderBy('price', $request->input('price'));
-        }
-        if ($request->input('mausac')) {
-            $query->where('mausac', $request->input('mausac'));
-        }
-        return $query
-        ->paginate(16)
-        ->withQueryString();
-    }
+    // public function search($request) {
+    //     $query = Product::where('nameproduct', 'like', '%'.$request->search.'%');
+    //     if ($request->input('price')) {
+    //         $query->orderBy('price', $request->input('price'));
+    //     }
+    //     if ($request->input('mausac')) {
+    //         $query->where('mausac', $request->input('mausac'));
+    //     }
+    //     return $query
+    //     ->paginate(16)
+    //     ->withQueryString();
+    // }
 }

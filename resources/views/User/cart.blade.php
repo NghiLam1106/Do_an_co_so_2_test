@@ -13,7 +13,8 @@
     <div class="header-cart-content flex-w js-pscroll">
         @php $total = 0; @endphp
         <ul class="header-cart-wrapitem w-full">
-            @if (!empty($products))
+            @if (Auth::check())
+                @if (!empty($products))
                 @foreach ($products as $product)
                     @php
                         $price = $product->price;
@@ -37,9 +38,13 @@
                         </div>
                     </li>
                 @endforeach
+                @else
+                    <h1>Giỏ hàng rổng</h1>
+                @endif
             @else
                 <h1>Giỏ hàng rổng</h1>
             @endif
+            
 
         </ul>
 
