@@ -23,7 +23,7 @@ class HomeController extends Controller
         $title = "Trang chủ";
         $infor = $this->MenuService->listAllMenu();
         $infor_product = $this->ProductUserService->get();
-        $infor_product = $this->ProductUserService->search($request);
+        // $infor_product = $this->ProductUserService->search($request);
         return view('User.home', compact('title', 'infor_product', 'infor'));
     }
 

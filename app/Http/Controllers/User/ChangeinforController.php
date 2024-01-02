@@ -17,6 +17,7 @@ class ChangeinforController extends Controller
     public function index(Request $request, $id) {
         $title = "Thay đổi thông tin";
         if (!empty($id)) {
+            // $Avatar = $this->ChangeinforService->Avatar($id);
             $infor = $this->ChangeinforService->listUserByid($id);
             if (!empty($infor[0])) {
                 $request->session()->put('id', $id);

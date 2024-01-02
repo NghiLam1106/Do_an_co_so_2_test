@@ -22,7 +22,7 @@ class ProductUserService {
             ->get();
     }
     
-    // 
+    // Lấy sản phẩm ở trang cửa hàng
     public function getProduct($request) {
         $query = DB::table('products')
             ->select('id', 'nameproduct', 'price', 'mausac', 'hinhanhproduct')
@@ -55,7 +55,7 @@ class ProductUserService {
             ->withQueryString();
     }
 
-    // 
+    // Liệt kê tất cả danh mục
     public function listAllMenu() {
         return DB::table('menus')->get();
     }

@@ -13,11 +13,9 @@
     </header>
 
     <!-- Cart -->
-    @if (Auth::check())
-        <div class="wrap-header-cart js-panel-cart">
-            @include('User.cart')
-        </div>
-    @endif
+    <div class="wrap-header-cart js-panel-cart">
+        @include('User.cart')
+    </div>
 
 
 
